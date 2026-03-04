@@ -40,6 +40,14 @@ if __name__ == "__main__":
     if len(sys.argv) != 3:
         print(f"Usage: {sys.argv[0]} <good_ip> <target_ip>")
         print(f"Example: {sys.argv[0]} 134.209.10.50 127.0.0.1")
+        print()
+        print("DigitalOcean setup:")
+        print("  1. Create a droplet and note its IP (e.g. 134.209.10.50)")
+        print("  2. Add an A record:  ns1.t0x.se -> 134.209.10.50  (your droplet)")
+        print("  3. Add an NS record: r.t0x.se  -> ns1.t0x.se     (delegates to your server)")
+        print("  4. Run this script on the droplet:")
+        print(f"       python3 {sys.argv[0]} 134.209.10.50 127.0.0.1")
+        print("  5. Queries to *.r.t0x.se will now alternate between the two IPs")
         sys.exit(1)
 
     resolver = RebindResolver(sys.argv[1], sys.argv[2])
